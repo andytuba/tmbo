@@ -10,12 +10,18 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
+  "background": {
+    "scripts": [
+	"src/background.js"
+    ]
+  },
   "content_scripts": [
     {
         "matches": [
 		"https://thismight.be/offensive/?c=hof&t=today"
 	],
 	"js": [ 
+		"js/jquery/jquery.js",
 		"src/open-top-pix.js" 
 	]
     }
