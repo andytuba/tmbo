@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+var activateOpenedTab = true;
+
+safari.application.addEventListener('message', function(request, sender, sendResponse) {
+	switch (request.requestType) {
+		case 'open':
+			openUrls(request.urls, activateOpenedTab);
+			break;
+	}
+});
+
+function openUrls(urls, activateOpenedTab) {
+	urls.forEach(function(url, index) {
+		setTimeout(openUrl, index * 200,
+		 	url, activateOpenedTab && index === 0);
+	});
+}
+
+function openUrl(url, activateOpenedTab) {
+	var tab = safari.application.activeBrowserWindow.openTab(activateOpenedTab ? 'foreground' : 'background');
+	tab.url = url;
+}
+
+
+</script>
+</head>
+</html>
